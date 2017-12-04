@@ -1,0 +1,22 @@
+{
+  "name": "crokmou-images",
+  "version": "1.0.1",
+  "description": "All the images of crokmou.com",
+  "main": "sqip.js",
+  "scripts": {
+    "test": "bash ./git-getrevision.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crokmou/images.git"
+  },
+  "author": "Crokmou",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/crokmou/images/issues"
+  },
+  "homepage": "https://github.com/crokmou/images#readme",
+  "devDependencies": {
+    "semver": "^5.4.1"
+  }
+}
