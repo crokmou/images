@@ -1,10 +1,10 @@
 {
   "name": "crokmou-images",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "All the images of crokmou.com",
   "main": "sqip.js",
   "scripts": {
-    "deploy": "bash ./git-getrevision.sh"
+    "deploy": "release-it"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/crokmou/images#readme",
   "devDependencies": {
+    "release-it": "^5.0.0",
     "semver": "^5.4.1"
   }
 }
