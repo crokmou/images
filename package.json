@@ -4,7 +4,7 @@
   "description": "All the images of crokmou.com",
   "main": "sqip.js",
   "scripts": {
-    "test": "bash ./git-getrevision.sh"
+    "deploy": "bash ./git-getrevision.sh"
   },
   "repository": {
     "type": "git",
