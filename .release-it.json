@@ -66,8 +66,8 @@
       "commit": true,
       "tag": true,
       "push": true,
-      "release": true,
-      "publish": true
+      "release": false,
+      "publish": false
     },
     "dist": {
       "status": false,
