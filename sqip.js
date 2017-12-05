@@ -20,6 +20,7 @@ fs.readdir('./i/', function(err, files) {
         filename: './i/'+f,
         numberOfPrimitives: 8
       });
+      console.log(f + ': ' + result.final_svg);
       if (fs.existsSync(outputDir) || fs.mkdirSync(outputDir)) {
         fs.writeFileSync(path.join(outputDir, f.replace(regexImgs, '.svg')), result.final_svg);
       }
