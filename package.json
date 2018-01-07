@@ -1,6 +1,6 @@
 {
   "name": "crokmou-images",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "All the images of crokmou.com",
   "main": "sqip.js",
   "scripts": {
@@ -18,6 +18,8 @@
   "homepage": "https://github.com/crokmou/images#readme",
   "devDependencies": {
     "release-it": "^5.0.0",
-    "semver": "^5.4.1"
+    "semver": "^5.4.1",
+    "sqip": "^0.2.2",
+    "underscore": "^1.8.3"
   }
 }
