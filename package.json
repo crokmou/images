@@ -4,7 +4,8 @@
   "description": "All the images of crokmou.com",
   "main": "sqip.js",
   "scripts": {
-    "deploy": "node sqip.js && release-it -n"
+    "build": "node sqip.js && release-it -n",
+    "deploy": "mkdir -p _site && cp -r svg i _site"
   },
   "repository": {
     "type": "git",

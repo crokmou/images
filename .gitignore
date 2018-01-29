@@ -15,5 +15,6 @@ nohup.out
 
 public/
 themes/crokmou/static/
+_site/
 
 _scripts/list_of_pictures_cloudinary.json
