@@ -1,11 +1,11 @@
 {
   "name": "crokmou-images",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "All the images of crokmou.com",
   "main": "sqip.js",
   "scripts": {
     "build": "node sqip.js && release-it -n",
-    "deploy": "mkdir -p _site && cp -r robots.txt svg i/ _site"
+    "deploy": "mkdir -p _site && cp -r robots.txt svg img/ _site"
   },
   "repository": {
     "type": "git",

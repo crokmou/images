@@ -7,7 +7,7 @@ const sqip = require('sqip');
 const outputDir = './svg/';
 const regexImgs = /\.(jpe?g|png|gif|svg)/i;
 
-fs.readdir('./i/', function(err, files) {
+fs.readdir('./img/', function(err, files) {
   files = files.filter(f => f !== '.DS_Store');
   fs.readdir('./svg/', function(err, svgs) {
     files = files.filter((f) => {
@@ -16,7 +16,7 @@ fs.readdir('./i/', function(err, files) {
     });
     files.filter(f => f !== '.DS_Store').map(f => {
       const result =  sqip({
-        filename: './i/'+f,
+        filename: './img/'+f,
         numberOfPrimitives: 8
       });
       console.log(f + ': ' + result.final_svg);
