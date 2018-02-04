@@ -5,7 +5,7 @@
   "main": "sqip.js",
   "scripts": {
     "build": "node sqip.js && release-it -n",
-    "deploy": "mkdir -p _site && cp -r robots.txt svg i/* _site"
+    "deploy": "mkdir -p _site && cp -r robots.txt svg lqip i/* _site"
   },
   "repository": {
     "type": "git",
@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/crokmou/images#readme",
   "devDependencies": {
+    "lqip": "^2.0.2",
+    "lqip-cli": "^0.2.2",
     "release-it": "^5.0.0",
     "semver": "^5.4.1",
     "sqip": "^0.2.2"
