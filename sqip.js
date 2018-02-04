@@ -1,14 +1,14 @@
 'use strict';
 
-const _ = require('underscore');
 const fs = require('fs');
 const path = require('path');
 const sqip = require('sqip');
 
+const inputDir = './i/';
 const outputDir = './svg/';
 const regexImgs = /\.(jpe?g|png|gif|svg)/i;
 
-fs.readdir('./i/', function(err, files) {
+fs.readdir(inputDir, function(err, files) {
   files = files.filter(f => f !== '.DS_Store');
   fs.readdir('./svg/', function(err, svgs) {
     files = files.filter((f) => {
@@ -17,7 +17,7 @@ fs.readdir('./i/', function(err, files) {
     });
     files.filter(f => f !== '.DS_Store').map(f => {
       const result =  sqip({
-        filename: './i/'+f,
+        filename: inputDir + '' + f,
         numberOfPrimitives: 8
       });
       console.log(f + ': ' + result.final_svg);
