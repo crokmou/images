@@ -1,6 +1,6 @@
 {
   "name": "crokmou-images",
-  "version": "1.0.24",
+  "version": "1.0.25",
   "description": "All the images of crokmou.com",
   "main": "sqip.js",
   "scripts": {
