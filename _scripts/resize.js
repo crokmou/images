@@ -2,14 +2,13 @@
 const fs = require('fs');
 const sharp = require('sharp');
 
-const files = getFiles('i');
+const files = getFiles('i', true);
 const p14 = getFiles('i/p14');
 const p750 = getFiles('i/p750');
 const p750x450 = getFiles('i/p750x450');
 
-
 files.map((file) => {
-  if(~file.name.indexOf(p14)) {
+  if(p14.map((f) => f.name).indexOf(file.name) === -1) {
     const folder = 'i/p14/';
     if (fs.existsSync(folder) || fs.mkdirSync(folder)) {
       sharp(file.path)
@@ -17,13 +16,13 @@ files.map((file) => {
       .toFile(folder + '' + file.name);
     }
   }
-  if(~file.name.indexOf(p750)) {
+  if(p750.map((f) => f.name).indexOf(file.name) === -1) {
     const folder = 'i/p750/';
     if (fs.existsSync(folder) || fs.mkdirSync(folder)) {
       sharp(file.path).resize(750).toFile(folder + '' + file.name);
     }
   }
-  if(~file.name.indexOf(p750x450)) {
+  if(p750x450.map((f) => f.name).indexOf(file.name) === -1) {
     const folder = 'i/p750x450/';
     if (fs.existsSync(folder) || fs.mkdirSync(folder)) {
       sharp(file.path).resize(750, 450).toFile(folder + '' + file.name).then(()=> {
@@ -35,18 +34,19 @@ files.map((file) => {
     }
   }
 });
-
-function getFiles (dir, files_){
+function getFiles (dir, folderOnly, files_){
   files_ = files_ || [];
   const files = fs.existsSync(dir) && fs.readdirSync(dir);
   for (const i in files){
     const path = dir + '/' + files[i];
     if (fs.statSync(path).isDirectory()){
-      getFiles(path, files_);
+      if(!folderOnly) {
+        getFiles(path, null, files_);
+      }
     } else {
       files_.push({path, name: files[i]});
     }
   }
-  return files_;
+  return files_.filter((f) => !/\.DS_Store/.test(f.name));
 }
 
