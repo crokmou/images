@@ -8,45 +8,72 @@ const p750 = getFiles('i/p750');
 const p750x450 = getFiles('i/p750x450');
 
 files.map((file) => {
-  if(p14.map((f) => f.name).indexOf(file.name) === -1) {
-    const folder = 'i/p14/';
-    if (fs.existsSync(folder) || fs.mkdirSync(folder)) {
-      sharp(file.path)
-      .resize(14)
-      .toFile(folder + '' + file.name);
-    }
-  }
-  if(p750.map((f) => f.name).indexOf(file.name) === -1) {
-    const folder = 'i/p750/';
-    if (fs.existsSync(folder) || fs.mkdirSync(folder)) {
-      sharp(file.path).resize(750).toFile(folder + '' + file.name);
-    }
-  }
-  if(p750x450.map((f) => f.name).indexOf(file.name) === -1) {
-    const folder = 'i/p750x450/';
-    if (fs.existsSync(folder) || fs.mkdirSync(folder)) {
-      sharp(file.path).resize(750, 450).toFile(folder + '' + file.name).then(()=> {
-        if (fs.existsSync(folder + 'p14/') || fs.mkdirSync(folder + 'p14/')) {
-          sharp(file.path.replace('i/', folder)).
-          resize(14).toFile(folder + 'p14/' + file.name)
+  if(isNotFolder(file.name)) {
+    if(!~p14.map(i => i.name).indexOf(file.name)) {
+      const folder = 'i/p14/';
+      if (fs.existsSync(folder) || fs.mkdirSync(folder)) {
+        const outputPath = folder + '' + file.name;
+        sharp(file.path).resize(14).toFile(outputPath);
+        if( /\.jpe?g$/i.test(file.name)) {
+          sharp(file.path).
+          resize(14).
+          toFile(
+            outputPath.replace(/^i\//, 'webp/').replace(/(\.jpe?g)$/i, '.webp'));
         }
-      });
+      }
+    }
+    if(!~p750.map(i => i.name).indexOf(file.name)) {
+      const folder = 'i/p750/';
+      if (fs.existsSync(folder) || fs.mkdirSync(folder)) {
+        const outputPath = folder + '' + file.name;
+        sharp(file.path).resize(750).toFile(outputPath);
+        if( /\.jpe?g$/i.test(file.name)) {
+          sharp(file.path).
+          resize(750).
+          toFile(
+            outputPath.replace(/^i\//, 'webp/').replace(/(\.jpe?g)$/i, '.webp'));
+        }
+      }
+    }
+    if(!~p750x450.map(i => i.name).indexOf(file.name)) {
+      const folder = 'i/p750x450/';
+      if (fs.existsSync(folder) || fs.mkdirSync(folder)) {
+        const outputPath = folder + '' + file.name;
+        sharp(file.path).resize(750, 450).toFile(outputPath).then(()=> {
+          if (fs.existsSync(folder + 'p14/') || fs.mkdirSync(folder + 'p14/')) {
+            const outputPath = folder + 'p14/' + file.name;
+            sharp(file.path.replace('i/', folder)).
+            resize(14).toFile(outputPath);
+            if( /\.jpe?g$/i.test(file.name)) {
+              sharp(file.path.replace('i/', folder)).
+              resize(14).
+              toFile(outputPath.replace(/^i\//, 'webp/').
+              replace(/(\.jpe?g)$/i, '.webp'));
+            }
+          }
+        });
+        if( /\.jpe?g$/i.test(file.name)) {
+          sharp(file.path).resize(750, 450).toFile(outputPath.replace(/^i\//, 'webp/').replace(/(\.jpe?g)$/i, '.webp'));
+        }
+      }
     }
   }
 });
-function getFiles (dir, folderOnly, files_){
+
+function isNotFolder(path) {
+  return !/p14|p750|p750x450/.test(path)
+}
+function getFiles (dir, root, files_){
   files_ = files_ || [];
   const files = fs.existsSync(dir) && fs.readdirSync(dir);
   for (const i in files){
     const path = dir + '/' + files[i];
-    if (fs.statSync(path).isDirectory()){
-      if(!folderOnly) {
-        getFiles(path, null, files_);
-      }
+    if (fs.statSync(path).isDirectory() && !root){
+      getFiles(path, root, files_);
     } else {
       files_.push({path, name: files[i]});
     }
   }
-  return files_.filter((f) => !/\.DS_Store/.test(f.name));
+  return files_;
 }
 
