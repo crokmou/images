@@ -6,10 +6,13 @@ const files = getFiles('i', true);
 const p14 = getFiles('i/p14');
 const p750 = getFiles('i/p750');
 const p750x450 = getFiles('i/p750x450');
+const wP14 = getFiles('webp/p14').map(i => i.name.replace(/\.webp$/i, ''));
+const wP750 = getFiles('webp/p750').map(i => i.name.replace(/\.webp$/i, ''));
+const wP750x450 = getFiles('webp/p750x450').map(i => i.name.replace(/\.webp$/i, ''));
 
 files.map((file) => {
   if(isNotFolder(file.name)) {
-    if(!~p14.map(i => i.name).indexOf(file.name)) {
+    if(!~p14.map(i => i.name).indexOf(file.name) || !~wP14.indexOf(file.name.replace(/\.(jpe?g|gif|png|bmp|webp)/i, ''))) {
       const folder = 'i/p14/';
       if (fs.existsSync(folder) || fs.mkdirSync(folder)) {
         const outputPath = folder + '' + file.name;
@@ -22,7 +25,7 @@ files.map((file) => {
         }
       }
     }
-    if(!~p750.map(i => i.name).indexOf(file.name)) {
+    if(!~p750.map(i => i.name).indexOf(file.name) || !~wP750.indexOf(file.name.replace(/\.(jpe?g|gif|png|bmp|webp)/i, ''))) {
       const folder = 'i/p750/';
       if (fs.existsSync(folder) || fs.mkdirSync(folder)) {
         const outputPath = folder + '' + file.name;
@@ -35,7 +38,7 @@ files.map((file) => {
         }
       }
     }
-    if(!~p750x450.map(i => i.name).indexOf(file.name)) {
+    if(!~p750x450.map(i => i.name).indexOf(file.name) || !~wP750x450.indexOf(file.name.replace(/\.(jpe?g|gif|png|bmp|webp)/i, ''))) {
       const folder = 'i/p750x450/';
       if (fs.existsSync(folder) || fs.mkdirSync(folder)) {
         const outputPath = folder + '' + file.name;
