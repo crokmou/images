@@ -74,6 +74,6 @@ function getFiles (dir, root, files_){
       files_.push({path, name: files[i]});
     }
   }
-  return files_;
+  return files__.filter((f) => !/\.DS_Store/.test(f.name));
 }
 
