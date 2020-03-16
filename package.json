@@ -3,7 +3,7 @@
   "version": "1.0.39",
   "description": "All the images of crokmou.com",
   "scripts": {
-    "release": "release-it -n --verbose",
+    "release": "release-it -n",
     "build": "git add -A && (git diff-index --quiet HEAD || git commit -m 'Add pictures') && git pull --rebase && node _scripts/resize.js && npm run release",
     "deploy": "mkdir -p _site && cp -r robots.txt svg webp i/* _site"
   },
