@@ -1,6 +1,6 @@
 {
   "name": "crokmou-images",
-  "version": "1.0.43",
+  "version": "1.0.44",
   "description": "All the images of crokmou.com",
   "scripts": {
     "release": "release-it -n",
