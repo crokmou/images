@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/crokmou/images#readme",
   "devDependencies": {
-    "release-it": "^5.0.0",
+    "release-it": "^15.6.0",
     "semver": "^5.4.1",
     "sharp": "^0.19.0",
     "sqip": "^0.2.2"
